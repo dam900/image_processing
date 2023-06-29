@@ -1,5 +1,5 @@
 import cv2 as cv
-from grey_scale_algorithms import grey_average
+from image_processing_algorithms import grey_average
 
 
 def main():
