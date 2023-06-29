@@ -1,50 +1,27 @@
 import cv2 as cv
-from image_processing_algorithms import vid_grey_average, vid_grey_weighted
-from processors import VideoProcessor, ImageProcessor, Processor
+import sys
+
+import numpy as np
+
+from processors import ImageProcessor
 from processors import ProcessorSettings as Ps
 
-v = VideoProcessor()
-i = ImageProcessor()
 
+def main():
+    img = np.asarray(cv.imread(r'blok.jpg'))
+    i = ImageProcessor(img)
+    if img is None:
+        sys.exit("Could not read the image.")
 
-def menu(setting: int, p: Processor):
-    match setting:
-        # q character
-        case 113:
-            exit()
-        # g character
-        case 103:
-            p.change_setting(Ps.GREY_AVERAGE)
-        # w character
-        case 119:
-            p.change_setting(Ps.GREY_WEIGHTED)
-        # n character
-        case 110:
-            p.change_setting(Ps.NO_SETTING)
-        # h character
-        case 104:
-            p.change_setting(Ps.HORIZONTAL_EDGES)
-        # v character
-        case 118:
-            p.change_setting(Ps.VERTICAL_EDGES)
+    img = i.transform(Ps.GREY_AVERAGE).transform(Ps.VERTICAL_EDGES).get_result()
+    img2 = i.reset().transform(Ps.GREY_AVERAGE).transform(Ps.HORIZONTAL_EDGES).get_result()
+    combined = (img2 + img) / 2
 
-
-def main(proc: Processor):
-    cap = cv.VideoCapture(0)
-    if not cap.isOpened():
-        print("Cannot open camera")
-        exit()
-    while True:
-        ret, frame = cap.read()
-        if not ret:
-            print("Can't receive frame (stream end?). Exiting ...")
-            break
-        frame = proc.transform(frame)
-        cv.imshow('frame', frame)
-        setting = cv.waitKey(1)
-
-        menu(setting, proc)
+    cv.imshow("Display window", combined)
+    key = cv.waitKey(0)
+    if key == ord("q"):
+        cv.destroyAllWindows()
 
 
 if __name__ == '__main__':
-    main(v)
+    main()

@@ -1,3 +1,4 @@
+from __future__ import annotations
 from abc import ABC, abstractmethod
 from .processor_settings import ProcessorSettings
 
@@ -8,11 +9,13 @@ class Processor(ABC):
     """Abstract class for Image and Video processors"""
 
     @abstractmethod
-    def transform(self, src: np.ndarray) -> np.ndarray:
+    def transform(self, transformation: ProcessorSettings) -> Processor:
         raise NotImplementedError
 
     @abstractmethod
-    def change_setting(self, new_setting: ProcessorSettings) -> None:
+    def get_result(self) -> np.ndarray:
         raise NotImplementedError
 
-
+    @abstractmethod
+    def reset(self) -> Processor:
+        raise NotImplementedError

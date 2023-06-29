@@ -19,8 +19,8 @@ def vid_horizontal_edges(src: np.ndarray) -> np.ndarray:
 
 
 def img_vertical_edges(src: np.ndarray) -> np.ndarray:
-    h, w = src.shape
-    dest = np.zeros((h, w, 1), dtype=float)
+    h, w, = src.shape
+    dest = np.zeros((h, w,), dtype=float)
     src = np.pad(src, 1, 'edge')
     kernel = np.array([[-1, 0, 1],
                        [-2, 0, 2],
@@ -33,7 +33,7 @@ def img_vertical_edges(src: np.ndarray) -> np.ndarray:
 
 def img_horizontal_edges(src: np.ndarray) -> np.ndarray:
     h, w = src.shape
-    dest = np.zeros((h, w, 1), dtype=float)
+    dest = np.zeros((h, w), dtype=float)
     src = np.pad(src, 1, 'edge')
     kernel = np.array([[-1, -2, -1],
                        [0, 0, 0],
