@@ -7,7 +7,7 @@ v = VideoProcessor()
 i = ImageProcessor()
 
 
-def menu(setting: str, p: Processor):
+def menu(setting: int, p: Processor):
     match setting:
         # q character
         case 113:
@@ -18,8 +18,15 @@ def menu(setting: str, p: Processor):
         # w character
         case 119:
             p.change_setting(Ps.GREY_WEIGHTED)
+        # n character
         case 110:
             p.change_setting(Ps.NO_SETTING)
+        # h character
+        case 104:
+            p.change_setting(Ps.HORIZONTAL_EDGES)
+        # v character
+        case 118:
+            p.change_setting(Ps.VERTICAL_EDGES)
 
 
 def main(proc: Processor):
