@@ -1,5 +1,5 @@
 import cv2 as cv
-from image_processing_algorithms import grey_average
+from image_processing_algorithms import grey_average, grey_weighted
 
 
 def main():
@@ -14,7 +14,7 @@ def main():
             print("Can't receive frame (stream end?). Exiting ...")
             break
         if grey_img:
-            frame = grey_average(frame)
+            frame = grey_weighted(frame)
         cv.imshow('frame', frame)
         setting = cv.waitKey(1)
         match setting:
