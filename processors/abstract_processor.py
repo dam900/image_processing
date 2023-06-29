@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from .processor_settings import ProcessorSettings
 
 import numpy as np
 
@@ -11,7 +12,7 @@ class Processor(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def change_setting(self, new_setting: str) -> None:
+    def change_setting(self, new_setting: ProcessorSettings) -> None:
         raise NotImplementedError
 
 
