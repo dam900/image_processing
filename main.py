@@ -1,9 +1,11 @@
 import cv2 as cv
 from image_processing_algorithms import grey_average, grey_weighted
+from processors import VideoProcessor
+
+v = VideoProcessor('n')
 
 
 def main():
-    grey_img = False
     cap = cv.VideoCapture(0)
     if not cap.isOpened():
         print("Cannot open camera")
@@ -13,15 +15,19 @@ def main():
         if not ret:
             print("Can't receive frame (stream end?). Exiting ...")
             break
-        if grey_img:
-            frame = grey_weighted(frame)
+        frame = v.transform(frame)
         cv.imshow('frame', frame)
         setting = cv.waitKey(1)
+
         match setting:
+            # q character
             case 113:
                 break
+            # g character
             case 103:
-                grey_img = not grey_img
+                v.change_setting('g')
+            case 119:
+                v.change_setting('w')
 
 
 if __name__ == '__main__':
