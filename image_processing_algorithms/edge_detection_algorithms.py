@@ -3,23 +3,18 @@ import numpy as np
 
 def vid_vertical_edges(src: np.ndarray) -> np.ndarray:
     h, w = src.shape
+    dest = np.zeros(src.shape)
     src = np.pad(src, 1, 'edge')
     kernel = np.array([[-1, 0, 1],
                        [-2, 0, 2],
                        [-1, 0, 1]])
-    I = np.array([0, 1, 2])
-    for x in range(w):
-        src[I, x] = (src[I, 0+x:3+x] * kernel).sum()
-        I+1
-    return src
+    indexes = np.array([0, 1, 2])
+    for x in range(0, h-2):
+        dest[indexes, x] = (src[indexes, 0+x:3+x] * kernel).sum()
+    return dest
 
 
 def vid_horizontal_edges(src: np.ndarray) -> np.ndarray:
-    src = np.pad(src, 1, 'edge')
-    kernel = np.array([[-1, -2, -1],
-                       [0, 0, 0],
-                       [1, 2, 1]])
-    return np.convolve(src, kernel)
     pass
 
 
