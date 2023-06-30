@@ -5,7 +5,7 @@ from canny_edge_detector import CannyEdgeDetector
 
 
 def main():
-    img = cv.imread(r'blok.jpg')
+    img = cv.imread(r'Large_Scaled_Forest_Lizard.jpg')
     if img is None:
         sys.exit("Could not read the image.")
 

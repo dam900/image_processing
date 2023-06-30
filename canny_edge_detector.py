@@ -14,9 +14,9 @@ class CannyEdgeDetector:
         smooth = ipa.img_gaussian_filter(grey)
         hor = ipa.img_horizontal_edges(smooth)
         ver = ipa.img_vertical_edges(smooth)
-        dest = (hor + ver) * 10
+        dest = (hor + ver)
         angle_space = np.arctan2(ver, hor)
         dest = ipa.img_non_max_suppression(dest, angle_space)
-        dest = ipa.img_double_thresholding(dest, Tl=0.0, Th=0.4)
-        dest = ipa.img_edge_tracking_hysteresis(dest, Tl=0.0, Th=0.4)
+        dest = ipa.img_double_thresholding(dest, Tl=0.5, Th=0.7)
+        dest = ipa.img_edge_tracking_hysteresis(dest, Tl=0.5, Th=0.7)
         return dest

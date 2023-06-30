@@ -20,27 +20,28 @@ def vid_horizontal_edges(src: np.ndarray) -> np.ndarray:
 
 def img_vertical_edges(src: np.ndarray) -> np.ndarray:
     h, w, = src.shape
-    dest = np.zeros((h, w,), dtype=float)
+    dest = np.zeros((h, w,))
     src = np.pad(src, 1, 'edge')
     kernel = np.array([[-1, 0, 1],
                        [-2, 0, 2],
                        [-1, 0, 1]])
     for x in range(0, h - 1):
         for y in range(0, w - 1):
-            dest[x, y] = (src[x:x + 3, y:y + 3] * kernel).sum()
+            dest[x, y] = np.abs((src[x:x + 3, y:y + 3] * kernel).sum())
+            # print((src[x:x + 3, y:y + 3] * kernel).sum(), x, y , sep='/')
     return dest
 
 
 def img_horizontal_edges(src: np.ndarray) -> np.ndarray:
     h, w = src.shape
-    dest = np.zeros((h, w), dtype=float)
+    dest = np.zeros((h, w))
     src = np.pad(src, 1, 'edge')
     kernel = np.array([[-1, -2, -1],
                        [0, 0, 0],
                        [1, 2, 1]])
     for x in range(0, h - 1):
         for y in range(0, w - 1):
-            dest[x, y] = (src[x:x + 3, y:y + 3] * kernel).sum()
+            dest[x, y] = np.abs((src[x:x + 3, y:y + 3] * kernel).sum())
     return dest
 
 
@@ -86,5 +87,7 @@ def img_edge_tracking_hysteresis(src: np.ndarray, Tl: float = 0.3, Th: float = 0
                     dest[x, y] = 1
                 else:
                     dest[x, y] = 0
+            else:
+                dest[x, y] = src[x, y]
     return dest
 
