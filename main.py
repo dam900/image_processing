@@ -1,50 +1,20 @@
 import cv2 as cv
-from image_processing_algorithms import vid_grey_average, vid_grey_weighted
-from processors import VideoProcessor, ImageProcessor, Processor
-from processors import ProcessorSettings as Ps
+import sys
 
-v = VideoProcessor()
-i = ImageProcessor()
+from canny_edge_detector import CannyEdgeDetector
 
 
-def menu(setting: int, p: Processor):
-    match setting:
-        # q character
-        case 113:
-            exit()
-        # g character
-        case 103:
-            p.change_setting(Ps.GREY_AVERAGE)
-        # w character
-        case 119:
-            p.change_setting(Ps.GREY_WEIGHTED)
-        # n character
-        case 110:
-            p.change_setting(Ps.NO_SETTING)
-        # h character
-        case 104:
-            p.change_setting(Ps.HORIZONTAL_EDGES)
-        # v character
-        case 118:
-            p.change_setting(Ps.VERTICAL_EDGES)
+def main():
+    img = cv.imread(r'blok.jpg')
+    if img is None:
+        sys.exit("Could not read the image.")
 
-
-def main(proc: Processor):
-    cap = cv.VideoCapture(0)
-    if not cap.isOpened():
-        print("Cannot open camera")
-        exit()
-    while True:
-        ret, frame = cap.read()
-        if not ret:
-            print("Can't receive frame (stream end?). Exiting ...")
-            break
-        frame = proc.transform(frame)
-        cv.imshow('frame', frame)
-        setting = cv.waitKey(1)
-
-        menu(setting, proc)
+    img = CannyEdgeDetector.canny_edge_detector(img)
+    cv.imshow("Display window", img)
+    key = cv.waitKey(0)
+    if key == ord("q"):
+        cv.destroyAllWindows()
 
 
 if __name__ == '__main__':
-    main(v)
+    main()
