@@ -1,13 +1,9 @@
-from .grey_scale_algorithms import vid_grey_average
 from .grey_scale_algorithms import img_grey_average
 
-from .grey_scale_algorithms import vid_grey_weighted
 from .grey_scale_algorithms import img_grey_weighted
 
-from .edge_detection_algorithms import vid_vertical_edges
 from .edge_detection_algorithms import img_vertical_edges
 
-from .edge_detection_algorithms import vid_horizontal_edges
 from .edge_detection_algorithms import img_horizontal_edges
 
 from .smoothing_algorithms import img_gaussian_filter

@@ -61,12 +61,12 @@ def img_non_max_suppression(src: np.ndarray, angle_space: np.ndarray) -> np.ndar
 
 def img_edge_tracking_hysteresis(src: np.ndarray, Tl: float = 0.3, Th: float = 0.5) -> np.ndarray:
     h, w = src.shape
-    src = np.pad(src, 2, 'edge')
+    src = np.pad(src, 1, 'edge')
     dest = np.zeros((h, w), dtype=float)
     for x in range(h-1):
         for y in range(w-1):
             if (src[x, y] > Tl) and (src[x, y] < Th):
-                if np.array(src[x:x+5, y:y+5] == 1).flatten().any(axis=0):
+                if np.array(src[x:x+3, y:y+3] == 1).flatten().any(axis=0):
                     dest[x, y] = 1
                 else:
                     dest[x, y] = 0
