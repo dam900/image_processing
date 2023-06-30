@@ -3,21 +3,19 @@ import sys
 
 import numpy as np
 
+from canny_edge_detector import CannyEdgeDetector
 from processors import ImageProcessor
 from processors import ProcessorSettings as Ps
 
 
 def main():
-    img = np.asarray(cv.imread(r'blok.jpg'))
+    img = cv.imread(r'blok.jpg')
     i = ImageProcessor(img)
     if img is None:
         sys.exit("Could not read the image.")
 
-    img = i.transform(Ps.GREY_AVERAGE).transform(Ps.VERTICAL_EDGES).get_result()
-    img2 = i.reset().transform(Ps.GREY_AVERAGE).transform(Ps.HORIZONTAL_EDGES).get_result()
-    combined = (img2 + img) / 2
-
-    cv.imshow("Display window", combined)
+    img = CannyEdgeDetector.canny_edge_detector(img)
+    cv.imshow("Display window", img)
     key = cv.waitKey(0)
     if key == ord("q"):
         cv.destroyAllWindows()

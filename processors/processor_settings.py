@@ -7,3 +7,5 @@ class ProcessorSettings(Enum):
     GREY_AVERAGE = 'g'
     HORIZONTAL_EDGES = 'h'
     VERTICAL_EDGES = 'v'
+    GAUSSIAN_FILTER = 'gf'
+    NON_MAX_SUPPRESSION = 'nms'

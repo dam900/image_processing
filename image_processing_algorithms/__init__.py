@@ -9,3 +9,9 @@ from .edge_detection_algorithms import img_vertical_edges
 
 from .edge_detection_algorithms import vid_horizontal_edges
 from .edge_detection_algorithms import img_horizontal_edges
+
+from .smoothing_algorithms import img_gaussian_filter
+from .edge_detection_algorithms import img_non_max_suppression
+from .smoothing_algorithms import img_double_thresholding
+from .edge_detection_algorithms import img_edge_tracking_hysteresis
+

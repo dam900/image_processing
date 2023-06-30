@@ -13,6 +13,8 @@ class ImageProcessor(Processor):
     def transform(self, transformation: ProcessorSettings) -> Processor:
         if transformation == ProcessorSettings.VERTICAL_EDGES:
             self.transformed = ipa.img_vertical_edges(self.transformed)
+        if transformation == ProcessorSettings.GAUSSIAN_FILTER:
+            self.transformed = ipa.img_gaussian_filter(self.transformed)
         if transformation == ProcessorSettings.HORIZONTAL_EDGES:
             self.transformed = ipa.img_horizontal_edges(self.transformed)
         if transformation == ProcessorSettings.GREY_AVERAGE:
