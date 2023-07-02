@@ -25,14 +25,14 @@ def main():
     valve_canny = plt.imread(r'samples/Valve_canny.png')
     valve_canny_cv = plt.imread(r'samples/Valve_canny_cv.png')
     images = [valve_original, valve_canny, valve_canny_cv]
-    titles = ['Original', 'Mine Canny', 'OpenCV Canny']
+    titles = ['Original', 'My Canny', 'OpenCV Canny']
     maps = [None, 'gray', 'gray']
     fig, ax = plt.subplots(1, 3, figsize=(8, 3), dpi=160)
     # fig.set_size_inches(18.5, 10.5, forward=True)
     for i in range(len(images)):
         ax[i].imshow(images[i], cmap=maps[i])
         ax[i].set(title=titles[i], xticks=[], yticks=[])
-    # plt.savefig('ValvesFig.png')
+    plt.savefig('readme_samples/ValvesFig.png')
 
     plt.show()
 
