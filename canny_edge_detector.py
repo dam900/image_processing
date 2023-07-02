@@ -11,7 +11,7 @@ class CannyEdgeDetector:
 
     @classmethod
     def canny_edge_detector(cls, src: np.ndarray, Tl: float = 0.3, Th: float = 0.6) -> np.ndarray:
-        grey = ipa.img_grey_weighted(src)
+        grey = ipa.grey_weighted(src)
         smooth = ipa.img_gaussian_filter(grey)
         hor = ipa.img_horizontal_edges(smooth)
         ver = ipa.img_vertical_edges(smooth)
