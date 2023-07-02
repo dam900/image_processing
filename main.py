@@ -32,7 +32,7 @@ def main():
     for i in range(len(images)):
         ax[i].imshow(images[i], cmap=maps[i])
         ax[i].set(title=titles[i], xticks=[], yticks=[])
-    plt.savefig('ValvesFig.png')
+    # plt.savefig('ValvesFig.png')
 
     plt.show()
 
