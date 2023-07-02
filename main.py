@@ -8,11 +8,13 @@ import image_processing_algorithms as ipa
 
 
 def main():
-    img = cv.imread(r'Large_Scaled_Forest_Lizard.jpg')
+    img = cv.imread(r'blok.jpg')
     if img is None:
         sys.exit("Could not read the image.")
 
-    img = ipa.grey_weighted(img)
+    img = CannyEdgeDetector.Canny(img)
+
+
     # canny = cv.Canny(img, threshold1=150, threshold2=200)
     # cdst = cv.cvtColor(canny, cv.COLOR_GRAY2BGR)
     # lines = cv.HoughLines(canny, 1, np.pi / 180, 400,  None, 0, 0)
