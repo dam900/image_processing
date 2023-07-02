@@ -1,6 +1,10 @@
 import cv2 as cv
 import numpy as np
 import sys
+import matplotlib.pyplot as plt
+import matplotlib
+
+matplotlib.use('TkAgg')
 
 from canny_edge_detector import CannyEdgeDetector
 from line_detector import LineDetector
@@ -8,19 +12,38 @@ from morphological import Morphological
 import image_processing_algorithms as ipa
 
 
+# ['GTK3Agg', 'GTK3Cairo', 'GTK4Agg', 'GTK4Cairo', 'MacOSX', 'nbAgg', 'QtAgg', 'QtCairo',
+# 'Qt5Agg', 'Qt5Cairo', 'TkAgg', 'TkCairo', 'WebAgg', 'WX', 'WXAgg',
+# 'WXCairo', 'agg', 'cairo', 'pdf', 'pgf', 'ps', 'svg', 'template']
+
+
 def main():
-    img = cv.imread(r'samples/Finger_print.png')
-    if img is None:
-        sys.exit("Could not read the image.")
+    # img = cv.imread(r'samples/Valve_original.png')
+    # if img is None:
+    #     sys.exit("Could not read the image.")
+    valve_original = plt.imread(r'samples/Valve_original.png')
+    valve_canny = plt.imread(r'samples/Valve_canny.png')
+    valve_canny_cv = plt.imread(r'samples/Valve_canny_cv.png')
+    images = [valve_original, valve_canny, valve_canny_cv]
+    titles = ['Original', 'Mine Canny', 'OpenCV Canny']
+    maps = [None, 'gray', 'gray']
+    fig, ax = plt.subplots(1, 3, figsize=(8, 3), dpi=160)
+    # fig.set_size_inches(18.5, 10.5, forward=True)
+    for i in range(len(images)):
+        ax[i].imshow(images[i], cmap=maps[i])
+        ax[i].set(title=titles[i], xticks=[], yticks=[])
+    plt.savefig('ValvesFig.png')
 
-    img = ipa.grey_weighted(img)
-    img = ipa.binarize(img)
-    img = Morphological.close(img, 1)
+    plt.show()
 
-    cv.imshow("Display window", img)
-    key = cv.waitKey(0)
-    if key == ord("q"):
-        cv.destroyAllWindows()
+    # img = ipa.grey_weighted(img)
+    # img = ipa.binarize(img)
+    # img = Morphological.close(img, 1)
+
+    # cv.imshow("Display window", img)
+    # key = cv.waitKey(0)
+    # if key == ord("q"):
+    #     cv.destroyAllWindows()
 
     # cap = cv.VideoCapture(0)
     # if not cap.isOpened():
