@@ -3,8 +3,8 @@ After the course Digital signals and images i wanted to learn more about image p
 
 Currently there are only algorithms for:
 * converting RGB to Grey Scale
-* Gausian blur
 * Canny edge detection
+* Line detection
 * more algorithms will appear here
 
 
