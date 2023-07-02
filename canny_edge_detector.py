@@ -20,3 +20,4 @@ class CannyEdgeDetector:
         dest = ipa.edge_tracking_hysteresis(dest, Tl=Tl, Th=Th)
         return dest
 
+

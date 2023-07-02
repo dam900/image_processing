@@ -7,13 +7,13 @@ from line_detector import LineDetector
 
 
 def main():
-    img = cv.imread(r'Valve_original.png')
+    img = cv.imread(r'samples/Valve_original.png')
     if img is None:
         sys.exit("Could not read the image.")
 
     canny = CannyEdgeDetector.Canny(img, 40, 60)
     # canny = cv.Canny(img, 150, 200)
-    cv.imwrite('Valve_canny.png', canny)
+    cv.imwrite('samples/Valve_canny.png', canny)
     # img = np.zeros((200, 200))
     # img[...] = np.flip(np.eye(200), axis=1) + np.eye(200)
     # bgr = np.zeros((200, 200, 3))
