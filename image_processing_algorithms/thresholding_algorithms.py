@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def double_edge_thresholding(src: np.ndarray, Tl: np.uint8 = 100, Th: np.uint8 = 200) -> np.ndarray:
+def double_edge_thresholding(src: np.ndarray, Tl: int = 100, Th: int = 200) -> np.ndarray:
     src[src <= Tl] = 0
     src[src >= Th] = 255
     return src
@@ -9,16 +9,14 @@ def double_edge_thresholding(src: np.ndarray, Tl: np.uint8 = 100, Th: np.uint8 =
 
 def non_max_suppression(src: np.ndarray, angle_space: np.ndarray) -> np.ndarray:
     h, w = src.shape
-    dest = np.zeros((h, w))
     src = np.pad(src, 1, 'edge')
-
+    dest = np.zeros((h, w), dtype=np.uint8)
     angle_space = angle_space * 180. / np.pi
     angle_space[angle_space < 0] += 180
 
-    for x in range(0, h - 1):
-        for y in range(0, w - 1):
-            q = 1
-            r = 1
+    with np.nditer(angle_space, flags=['multi_index'], op_flags=['readonly']) as it:
+        for k in it:
+            x, y = it.multi_index
             if (0 <= angle_space[x, y] < 22.5) or (157.5 <= angle_space[x, y] <= 180):
                 q = src[x, y + 1]
                 r = src[x, y - 1]
@@ -33,6 +31,4 @@ def non_max_suppression(src: np.ndarray, angle_space: np.ndarray) -> np.ndarray:
                 r = src[x + 1, y + 1]
             if (src[x, y] >= q) and (src[x, y] >= r):
                 dest[x, y] = src[x, y]
-            else:
-                dest[x, y] = 0
     return dest

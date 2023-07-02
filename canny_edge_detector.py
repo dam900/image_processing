@@ -8,7 +8,7 @@ class CannyEdgeDetector:
         pass
 
     @classmethod
-    def Canny(cls, src: np.ndarray, Tl: np.uint8 = 100, Th: np.uint8 = 150) -> np.ndarray:
+    def Canny(cls, src: np.ndarray, Tl: int = 100, Th: int = 150) -> np.ndarray:
         grey = ipa.grey_weighted(src)
         blur = ipa.gaussian_filter(grey)
         hor = ipa.horizontal_edges(blur)

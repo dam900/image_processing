@@ -8,4 +8,15 @@ Currently there are only algorithms for:
 * more algorithms will appear here
 
 
+# Canny edge detector 
+Original image
 
+![](Valve_original.png "Original image")
+
+Canny using my algorithm
+
+![](Valve_canny.png "Canny using my algorithm")
+
+Canny using openCv
+
+![](Valve_canny_cv.png "Canny using openCV")
