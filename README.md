@@ -10,4 +10,4 @@ Currently there are only algorithms for:
 
 # Canny edge detector
 
-![](\readme_samples\ValvesFig.png)
+![](readme_samples/ValvesFig.png)
