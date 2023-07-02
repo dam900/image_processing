@@ -3,15 +3,14 @@ import numpy as np
 
 def img_vertical_edges(src: np.ndarray) -> np.ndarray:
     h, w, = src.shape
-    dest = np.zeros((h, w,))
+    dest = np.zeros((h, w))
     src = np.pad(src, 1, 'edge')
-    kernel = np.array([[-1, 0, 1],
-                       [-2, 0, 2],
-                       [-1, 0, 1]])
+    kernel = np.array([[1, 0, -1],
+                       [2, 0, -2],
+                       [1, 0, -1]])
     for x in range(0, h - 1):
         for y in range(0, w - 1):
             dest[x, y] = np.abs((src[x:x + 3, y:y + 3] * kernel).sum())
-            # print((src[x:x + 3, y:y + 3] * kernel).sum(), x, y , sep='/')
     return dest
 
 
@@ -30,7 +29,7 @@ def img_horizontal_edges(src: np.ndarray) -> np.ndarray:
 
 def img_non_max_suppression(src: np.ndarray, angle_space: np.ndarray) -> np.ndarray:
     h, w = src.shape
-    dest = np.zeros((h, w), dtype=float)
+    dest = np.zeros((h, w))
     src = np.pad(src, 1, 'edge')
 
     angle_space = angle_space * 180. / np.pi
@@ -62,7 +61,7 @@ def img_non_max_suppression(src: np.ndarray, angle_space: np.ndarray) -> np.ndar
 def img_edge_tracking_hysteresis(src: np.ndarray, Tl: float = 0.3, Th: float = 0.5) -> np.ndarray:
     h, w = src.shape
     src = np.pad(src, 1, 'edge')
-    dest = np.zeros((h, w), dtype=float)
+    dest = np.zeros((h, w))
     for x in range(h-1):
         for y in range(w-1):
             if (src[x, y] > Tl) and (src[x, y] < Th):
