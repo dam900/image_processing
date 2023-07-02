@@ -2,9 +2,7 @@ import cv2 as cv
 import numpy as np
 import sys
 
-from line_detector import LineDetector
 from canny_edge_detector import CannyEdgeDetector
-import image_processing_algorithms as ipa
 
 
 def main():
@@ -12,12 +10,11 @@ def main():
     if img is None:
         sys.exit("Could not read the image.")
 
-    img = CannyEdgeDetector.Canny(img)
+    # canny = CannyEdgeDetector.Canny(img)
 
 
-    # canny = cv.Canny(img, threshold1=150, threshold2=200)
-    # cdst = cv.cvtColor(canny, cv.COLOR_GRAY2BGR)
-    # lines = cv.HoughLines(canny, 1, np.pi / 180, 400,  None, 0, 0)
+    canny = cv.Canny(img, threshold1=150, threshold2=200)
+    lines = cv.HoughLines(canny, 1, np.pi / 180, 400,  None, 0, 0)
     # if lines is not None:
     #     for i in range(0, len(lines)):
     #         rho = lines[i][0][0]

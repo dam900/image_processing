@@ -1,6 +1,4 @@
 import numpy as np
-import cv2 as cv
-
 import image_processing_algorithms as ipa
 
 
