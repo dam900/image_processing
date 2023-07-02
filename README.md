@@ -8,15 +8,6 @@ Currently there are only algorithms for:
 * more algorithms will appear here
 
 
-# Canny edge detector 
-Original image
+# Canny edge detector
 
-![](samples/Valve_original.png "Original image")
-
-Canny using my algorithm
-
-![](samples/Valve_canny.png "Canny using my algorithm")
-
-Canny using openCv
-
-![](samples/Valve_canny_cv.png "Canny using openCV")
+![](C:\Users\Damian\Desktop\SideProjects\image_processing\readme_samples\ValvesFig.png)
