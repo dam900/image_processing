@@ -8,15 +8,12 @@ Currently there are only algorithms for:
 * more algorithms will appear here
 
 
-# Canny edge detector 
-Original image
+# Canny edge detector
 
-![](samples/Valve_original.png "Original image")
+![](readme_samples/ValvesFig.png)
 
-Canny using my algorithm
+# Morphological transformations
 
-![](samples/Valve_canny.png "Canny using my algorithm")
+![](readme_samples/FingersFig.png)
 
-Canny using openCv
-
-![](samples/Valve_canny_cv.png "Canny using openCV")
+![](readme_samples/HorseFig.png)

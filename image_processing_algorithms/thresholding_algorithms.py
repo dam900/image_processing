@@ -32,3 +32,9 @@ def non_max_suppression(src: np.ndarray, angle_space: np.ndarray) -> np.ndarray:
             if (src[x, y] >= q) and (src[x, y] >= r):
                 dest[x, y] = src[x, y]
     return dest
+
+
+def binarize(src: np.ndarray) -> np.ndarray:
+    src[src < np.floor(255 / 2)] = 0
+    src[src >= np.floor(255 / 2)] = 255
+    return src
