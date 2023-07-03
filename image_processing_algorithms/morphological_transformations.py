@@ -4,8 +4,8 @@ from numpy.lib.stride_tricks import sliding_window_view
 
 def erosion(src: np.ndarray) -> np.ndarray:
     h, w = src.shape
-    dest = np.zeros((h, w),  dtype=np.uint8)
     src = np.pad(src, 1, 'constant')
+    dest = np.zeros((h, w),  dtype=np.uint8)
     v = sliding_window_view(src, (3, 3))
     for y, view in enumerate(v):
         for x, window in enumerate(view):
@@ -14,7 +14,7 @@ def erosion(src: np.ndarray) -> np.ndarray:
 
 
 def dilatation(src: np.ndarray) -> np.ndarray:
-    h, w = src.shape
+    h, w = src.shape[0], src.shape[1]
     dest = np.zeros((h, w), dtype=np.uint8)
     src = np.pad(src, 1, 'constant')
     v = sliding_window_view(src, (3, 3))

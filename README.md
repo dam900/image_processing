@@ -11,3 +11,9 @@ Currently there are only algorithms for:
 # Canny edge detector
 
 ![](readme_samples/ValvesFig.png)
+
+# Morphological transformations
+
+![](readme_samples\FingersFig.png)
+
+![](C:\Users\Damian\Desktop\SideProjects\image_processing\readme_samples\HorseFig.png)
