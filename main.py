@@ -29,9 +29,8 @@ def main():
     # plt.show()
 
     img = ipa.grey_weighted(img)
-    # img = ipa.gaussian_filter(img)
-    # img = ipa.binarize(img)
-    img = Morphological.black_hat(img)
+    img = ipa.binarize(img)
+    img = ipa.hit_miss(img)
 
     cv.imshow("Display window", img)
     key = cv.waitKey(0)

@@ -13,3 +13,4 @@ from .thresholding_algorithms import binarize
 
 from .morphological_transformations import erosion
 from .morphological_transformations import dilatation
+from .morphological_transformations import hit_miss
