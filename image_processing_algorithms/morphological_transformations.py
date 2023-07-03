@@ -2,25 +2,33 @@ import numpy as np
 from numpy.lib.stride_tricks import sliding_window_view
 
 
-def erosion(src: np.ndarray) -> np.ndarray:
+def erosion(src: np.ndarray, kernel) -> np.ndarray:
     h, w = src.shape
-    src = np.pad(src, 1, 'constant')
+    kh, kw = kernel.shape
+    src = np.pad(src, max(kh, kw)//2, 'constant')
     dest = np.zeros((h, w), dtype=np.uint8)
-    v = sliding_window_view(src, (3, 3))
+    v = sliding_window_view(src, (kh, kw))
     for y, view in enumerate(v):
         for x, window in enumerate(view):
-            dest[y, x] = np.min(window)
+            try:
+                dest[y, x] = np.min(window)
+            except:
+                pass
     return dest
 
 
-def dilatation(src: np.ndarray) -> np.ndarray:
+def dilatation(src: np.ndarray, kernel) -> np.ndarray:
     h, w = src.shape
+    kh, kw = kernel.shape
     dest = np.zeros((h, w), dtype=np.uint8)
-    src = np.pad(src, 1, 'constant')
-    v = sliding_window_view(src, (3, 3))
+    src = np.pad(src, max(kh, kw) // 2, 'constant')
+    v = sliding_window_view(src, (kh, kw))
     for y, view in enumerate(v):
         for x, window in enumerate(view):
-            dest[y, x] = np.max(window)
+            try:
+                dest[y, x] = np.max(window)
+            except:
+                pass
     return dest
 
 

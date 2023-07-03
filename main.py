@@ -13,26 +13,32 @@ matplotlib.use('TkAgg')
 
 
 def main():
-    img = cv.imread(r'samples/white-horse-running.jpg')
-    if img is None:
-        sys.exit("Could not read the image.")
+    # img = cv.imread(r'samples/Finger_print.png')
+    # if img is None:
+    #     sys.exit("Could not read the image.")
 
-    # Horse_original = plt.imread('samples/white-horse-running.jpg')
-    # Horse_gradient = plt.imread('samples/white-horse-running-gradient.jpg')
-    # fig, ax = plt.subplots(1, 2, figsize=(4, 1.5), dpi=400)
-    # ax[0].imshow(Horse_original)
-    # ax[0].set(title='Original', xticks = [], yticks = [])
-    #
-    # ax[1].imshow(Horse_gradient, cmap='gray')
-    # ax[1].set(title='After gradient', xticks=[], yticks=[])
-    # plt.savefig('readme_samples/HorseFig.png')
-    # plt.show()
+    Notes_original = plt.imread('samples/notes.png')
+    Notes_horizontal = plt.imread('samples/notes_horizontal.png')
+    Notes_vertical = plt.imread('samples/notes_vertical.png')
+    fig, ax = plt.subplots(3, 1, figsize=(6, 6), dpi=200)
+    ax[0].imshow(Notes_original)
+    ax[0].set(title='Original', xticks = [], yticks = [])
 
-    img = ipa.grey_weighted(img)
-    img = ipa.binarize(img)
-    img = ipa.hit_miss(img)
+    ax[1].imshow(Notes_horizontal, cmap='gray')
+    ax[1].set(title='Horizontal', xticks=[], yticks=[])
 
-    cv.imshow("Display window", img)
+    ax[2].imshow(Notes_vertical, cmap='gray')
+    ax[2].set(title='Vertical', xticks=[], yticks=[])
+
+    plt.savefig('readme_samples/NotesFig.png')
+    plt.show()
+
+    # img = ipa.grey_weighted(img)
+    # img = ipa.binarize(img)
+    # kernel = np.ones((3, 3))
+    # img = Morphological.open(img, 1, kernel)
+
+    # cv.imshow("Display window", img)
     key = cv.waitKey(0)
     if key == ord("q"):
         cv.destroyAllWindows()
