@@ -29,8 +29,10 @@ class Morphological:
 
     @classmethod
     def top_hat(cls, src: np.ndarray):
-        pass
+        dest = src.copy()
+        return dest - cls.open(src, 1)
 
     @classmethod
     def black_hat(cls, src: np.ndarray):
-        pass
+        dest = src.copy()
+        return cls.close(src, 1) - dest

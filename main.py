@@ -31,7 +31,7 @@ def main():
     img = ipa.grey_weighted(img)
     # img = ipa.gaussian_filter(img)
     # img = ipa.binarize(img)
-    img = Morphological.gradient(img)
+    img = Morphological.black_hat(img)
 
     cv.imshow("Display window", img)
     key = cv.waitKey(0)
